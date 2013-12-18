@@ -1,5 +1,5 @@
       <div class="PhotoList" >
-        <div class="bs-example">
+        <div class="opa isAni bs-example">
 
           <h5>1.0.0</h5>
           <div class="btn-group"> 
@@ -37,6 +37,7 @@
 
           <h5>1.1.0</h5>
           <div class="btn-group"> 
+            <button type="button" class="ChPhoto btn btn-default" data="23">綠衣男</button>
             <button type="button" class="ChPhoto btn btn-default" data="11">
               媽媽捂臉
             </button>
@@ -46,10 +47,19 @@
             <button type="button" class="ChPhoto btn btn-default" data="13">
               媽媽嘆氣
             </button>
+            <button type="button" class="ChPhoto btn btn-default" data="26">女兒躲避攻擊</button>
+            <button type="button" class="ChPhoto btn btn-default" data="25">爸爸打女兒</button>
             <button type="button" class="ChPhoto btn btn-default" data="14">
               閃動的女兒
             </button>
 
+            <button type="button" class="ChPhoto btn btn-default" data="22">
+              鐵面女兒
+            </button>
+            <button type="button" class="ChPhoto btn btn-default" data="21">空白圖案</button>
+          </div>
+
+          <div class="btn-group"> 
             <button type="button" class="ChPhoto btn btn-default" data="18">
               白雪公主的媽媽和女兒
             </button>
@@ -58,14 +68,6 @@
             </button>
             <button type="button" class="ChPhoto btn btn-default" data="20">
               公主捂臉
-            </button>
-
-            <button type="button" class="ChPhoto btn btn-default" data="21">
-              空白圖案
-            </button>
-
-            <button type="button" class="ChPhoto btn btn-default" data="22">
-              鐵面女兒
             </button>
 
           </div>
@@ -83,50 +85,53 @@
             </button>
           </div>
 
-          <h5>1.1.2 番外</h5>
+          <h5>1.1.3 超級英雄系列 By <a href="http://weibo.com/u/3221798574">@Ninne_刘钊</a> </h5>
           <div class="btn-group"> 
-            <button type="button" class="ChPhoto btn btn-default" data="23">
-              綠衣男出現
-            </button>
-            <button type="button" class="ChPhoto btn btn-default" data="24">
-              超人女還擊
-            </button>
+            <button type="button" class="ChPhoto btn btn-default" data="24">女超人</button>
+            <button type="button" class="ChPhoto btn btn-default" data="29">蝙蝠俠</button>
+            <button type="button" class="ChPhoto btn btn-default" data="30">蜘蛛俠</button>
+            <button type="button" class="ChPhoto btn btn-default" data="27">綠巨人爸爸</button>
+            <button type="button" class="ChPhoto btn btn-default" data="31">綠巨人女兒</button>
+            <button type="button" class="ChPhoto btn btn-default" data="28">紀念媽媽</button>
           </div>
 
-          <h5>更多操作</h5>
+          <h5>導演</h5>
           <div class="btn-group">
             <button type="button" class="DelSingle btn btn-danger" dataSID="0">
-              <span class="animation glyphicon glyphicon-remove"></span> 刪除此欄位
+              <span class="animation glyphicon glyphicon-remove"></span> 刪除此分鏡
             </button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-8">
-            <p><img class="mama_photo" src="photo.php?PhotoID=1" dataa="" datab="" datac="" dataID="1" /></p>
+          <div class="col-md-7">
+            <p><img class="mama_photo shw" src="photo.php?PhotoID=1" dataa="" datab="" datac="" dataID="1" /></p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-5">
 
             <div class="tips bs-callout bs-callout-danger">
-              <h4>媽媽在做準備動作</h4>
-              <p><span class="ani animation glyphicon glyphicon-cog"></span> 請稍後，女兒即將捱打。</p>
+              <h4>媽媽正在熱身</h4>
+              <p><span class="loop ani animation glyphicon glyphicon-cog"></span> 請稍後，女兒即將捱打。</p>
+              <p class="desctext" >如果攝像機卡住了，請點擊<button type="button" class="Reload ChPhoto btn-link" data="25">這裡</button>重試。</p>
             </div>
 
             <form role="form">
+              <h4>設計對白</h4>
+              <hr/>
               <div class="ChText form-group">
-                <label>文字 1</label>
-                <input class="Text1 form-control" placeholder="請輸入一段文字">
+                <label>主角 A 說：</label>
+                <input class="Text1 form-control" placeholder="學習一天了，跟媽媽出去玩吧。">
               </div>
               <div class="ChText ChText2 form-group" data="2">
-                <label>文字 2</label>
-                <input class="Text2 form-control" placeholder="請輸入第二段文字">
+                <label>主角 B 回答：</label>
+                <input class="Text2 form-control" placeholder="不呢，我喜歡學習">
               </div>
               <div class="ChText ChText3 form-group disn" data="3">
-                <label>文字 3</label>
-                <input class="Text3 form-control" placeholder="請輸入第三段文字">
+                <label>導演：</label>
+                <input class="Text3 form-control" placeholder="……">
               </div>
-              <button type="button" class="btn btn-primary Update">
-                預覽字樣
+              <button type="button" class="btn btn-default Update">
+                預覽對白
               </button>
             </form>
           </div>

@@ -2,27 +2,32 @@
 session_start();
 header("Content-Type:text/html; charset=utf-8");
 
-$VarID = '1.1.2.1206';
-$rand = rand ( 1 , 15 );
+$VarID = '1.1.3.1207 Beta';
+$rand = rand ( 1 , 70 );
 ?>
 <!DOCTYPE html>
-<html>
+<html xmlns:wb=“http://open.weibo.com/wb”>
 <head>
   <title>Mama，Hit me again!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="shortcut icon" href="favicon.ico" />
   <!-- Google 分析代碼 -->
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19058553-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
 
-  ga('create', 'UA-19058553-1', 'llqoli.com');
-  ga('send', 'pageview');
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
 
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
   </script>
 
+  <!-- Social Share  -->  
+  <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -35,7 +40,7 @@ $rand = rand ( 1 , 15 );
       <![endif]-->
 
     </head>
-    <body>
+    <body class="isAni">
 
       <? if ($rand == 1) : ?>
       <div class="alert alert-warning fade in" style="margin-top: 15px;" >
@@ -45,17 +50,18 @@ $rand = rand ( 1 , 15 );
 
     <? endif; ?>
 
-    <div class="clearfix" >
+    <div class="opa isAni clearfix" >
 
       <div class="right">
         <ul class="nav nav-pills">
-          <li class="index"><a href="index.php">主頁</a></li>
-          <li class="preview disabled"><a href="###">預覽</a></li>
+          <li class="index"><a href="index.php">構建器</a></li>
+          <li class="update"><a href="update.php">更新日誌</a></li>
           <li class="about"><a href="about.php">關於</a></li>
+          <li class=""><a href="http://llqoli.com">庫倪先生</a></li>
         </ul>
       </div>
       <div class="left">
-        <h2>媽媽，再打我一次．Beta</h2>
-        <p><b>「媽媽，再打我一次」</b>的圖像構建器 <?=$VarID?> </p>
+        <h2><a href="index.php" ><img src="assets/logo_min.png" /></a></h2>
+        <h6>「媽媽，再打我一次」的圖像構建器 <?=$VarID?> </h6>
       </div>
     </div>

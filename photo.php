@@ -1,6 +1,8 @@
 <?php
 header('Content-type: image/jpeg');
 
+sleep(5);
+
 $p  = dirname(__FILE__) . '/assets/mama_' . $_GET['PhotoID'] . '.png';
 $t1 = $_GET['Text1'];
 $t2 = $_GET['Text2'];
@@ -39,6 +41,12 @@ switch ($_GET['PhotoID']) {
 	case 22:
 	case 23:
 	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 29:
+	case 30:
+	case 31:
 	$posY1 = 300;
 	$posY2 = 9999;
 	break;

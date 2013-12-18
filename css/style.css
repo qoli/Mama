@@ -1,7 +1,68 @@
+html {
+	font-family: "Open Sans","lucida grande","Segoe UI","Hiragino Sans GB",arial,verdana,"lucida sans unicode",tahoma,sans-serif !important;
+	-webkit-font-smoothing: antialiased;
+}
+
 body {
 	max-width: 960px;
 	margin: 0 auto;
 	padding-top: 0px;
+	background-color: #fafafa;
+}
+
+.PhotoList .btn-group {
+	margin-bottom: 0.6em;
+}
+
+hr {
+	border: none;
+	border-top: #ccc 1px solid;
+	border-bottom: #fff 2px solid;
+}
+
+#close_preview {
+	margin-top: -3px;
+}
+
+.h278 {
+	min-height: 278px;
+	display: inline-block;
+}
+
+.popover-title {
+	font-size: 11px;
+	font-weight: bolder;
+}
+
+.pre_bigphoto {
+	margin: 25px 45px 10px;
+}
+
+.b {
+	font-weight: bolder;
+}
+
+.disb {
+	display: block;
+}
+
+.shw {
+	box-shadow: 0 6px 36px rgba(0,0,0,0.2);
+}
+
+.opa {
+	opacity: 0.15;
+}
+.opa2 {
+	opacity: 0.6;
+}
+
+.opa:hover {
+	opacity: 1;
+}
+
+.opa:hover body {
+	opacity: 0.2;
 }
 
 .nav {
@@ -20,7 +81,7 @@ body {
 
 /* Echo out a label for the example */
 .bs-example:after {
-	content: "圖片添加";
+	content: "攝像機位置";
 	position: absolute;
 	top: 15px;
 	left: 15px;
@@ -39,10 +100,10 @@ body {
 }
 
 .bs-example2:after {
-	content: "添加欄位";
+	content: "添加分鏡";
 }
 .bs-example3:after {
-	content: "操作欄";
+	content: "控制中心";
 }
 
 
@@ -62,11 +123,31 @@ body {
 	float: right;
 }
 .animation {
-	-webkit-transition: all +0.8s ease-in;
-	-moz-transition: all +0.8s ease-in;
-	-o-transition: all +0.8s ease-in;
-	transition: all +0.8s ease-in;
+	-webkit-transition: all 0.8s ease-in;
+	-moz-transition: all 0.8s ease-in;
+	-o-transition: all 0.8s ease-in;
+	transition: all 0.8s ease-in;
 }
+
+.loop {
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinte;
+}
+
+.isAni {
+	-webkit-transition: all 0.4s ease-in;
+	-moz-transition: all 0.4s ease-in;
+	-o-transition: all 0.4s ease-in;
+	transition: all 0.4s ease-in;
+}
+
+.isAni2 {
+	-webkit-transition: all 1.4s ease-in;
+	-moz-transition: all 1.4s ease-in;
+	-o-transition: all 1.4s ease-in;
+	transition: all 1.4s ease-in;
+}
+
 .animation:hover,.run {
 	-webkit-transform: rotate(720deg) scale(1.2);
 	-moz-transform: rotate(720deg) scale(1.2);
