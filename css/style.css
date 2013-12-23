@@ -29,6 +29,10 @@ hr {
 	display: inline-block;
 }
 
+.popover {
+	max-width: 500px !important;
+}
+
 .popover-title {
 	font-size: 11px;
 	font-weight: bolder;
@@ -100,7 +104,7 @@ hr {
 }
 
 .bs-example2:after {
-	content: "添加分鏡";
+	content: "添加鏡頭"
 }
 .bs-example3:after {
 	content: "控制中心";
@@ -176,6 +180,35 @@ hr {
 	border-top: 1px #eee solid;
 	padding-top: 0px;
 	margin-top: 50px;
+}
+
+/*
+Tabs
+ */
+
+.nav-tabs .active a {
+	background-color: #fafafa !important;
+}
+
+.tab-content img{
+	padding: 2px;
+	margin: 4px;
+	border-radius: 2px;
+}
+
+.tab-content img:hover,.tab-content .tab-pane .active {
+	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+	border-radius: 8px;
+}
+
+.tab-content .tab-pane .active {
+	background-color: #e5f9ff;
+}
+
+.tab-content .tab-pane h5 {
+	margin-top: 30px;
+	font-size: 12px;
+	margin-bottom: 0px;
 }
 
 /*

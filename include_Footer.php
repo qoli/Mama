@@ -8,7 +8,7 @@
       </p> 設計和開發由 Qoli Wong 完成。．<a href="http://www.llqoli.com">www.llqoli.com</a> ．<a href="http://weibo.com/qoli">weibo.com/qoli</a> ．「媽媽，請再打我一次」的圖像來源于微博，原始來源未知。 · <?=$rand?></p>
       <div class="ShareBox clearfix" >
 
-      	<wb:share-button class="left" appkey="5zxFt2" addition="simple" type="button" ralateUid="1450874875" default_text="#妈妈再打我一次# 这个生成器很好玩。大家一齐来玩啦。" language="zh_tw" pic="http%3A%2F%2Ftools.llqoli.com%2FMama%2Fassets%2Fabout.gif"></wb:share-button>
+      	<wb:share-button class="left" appkey="5zxFt2" addition="simple" type="button" ralateUid="1450874875" default_text="妈妈再打我一次，这个生成器很好玩。大家一齐来玩啦。" language="zh_tw" pic="http%3A%2F%2Ftools.llqoli.com%2FMama%2Fassets%2Fabout.gif"></wb:share-button>
       	<div class="left" id="qqwb_share__" data-appkey="801453170" data-icon="1" data-counter="0" data-counter_pos="right" data-content="#妈妈再打我一次# 这个生成器很好玩。大家一齐来玩啦。" data-pic="http://tools.llqoli.com/Mama/assets/about.gif"></div>
       	<!-- AddThis Button BEGIN -->
       	<div class="addthis_toolbox addthis_default_style left" style="margin-top: 2px;width: 300px;" >

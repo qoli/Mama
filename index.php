@@ -13,11 +13,11 @@
   </div>
   <div class="right">
     <button id="PreviewButton" type="button" class="pop preview btn btn-primary" 
-    data-loading-text="正在合併分鏡..." rel="popover" data-html="true" data-trigger="manual" data-title='你的影片 <a id="close_preview" class="close" aria-hidden="true">&times;</a>'
+    data-loading-text="正在合併鏡頭…" rel="popover" data-html="true" data-trigger="manual" data-title='你的影片 <a id="close_preview" class="close" aria-hidden="true">&times;</a>'
     data-content='點擊開始渲染' data-placement="auto">
     <span class="glyphicon glyphicon-chevron-right"></span> 生成預覽
   </button>
-  <a href="index.php" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> 重來</a>
+  <a target="_blank" class="btn btn-success" href="http://service.weibo.com/share/share.php?url=<?='http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']?>&type=button&ralateUid=1450874875&language=zh_tw&appkey=5zxFt2&title=妈妈再打我一次，这个生成器很好玩。大家一齐来玩啦。&pic=http%3A%2F%2Ftools.llqoli.com%2FMama%2Fassets%2Fabout.gif&searchPic=true&style=simple">分享到微博</a>
   <p class="desctext">步驟 1/2</p>
 </div>
 </div>

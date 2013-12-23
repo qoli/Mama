@@ -2,7 +2,7 @@
 session_start();
 header("Content-Type:text/html; charset=utf-8");
 
-$VarID = '1.1.3.1207 Beta';
+$VarID = '1.1.4.1224 Beta';
 $rand = rand ( 1 , 70 );
 ?>
 <!DOCTYPE html>
@@ -62,6 +62,6 @@ $rand = rand ( 1 , 70 );
       </div>
       <div class="left">
         <h2><a href="index.php" ><img src="assets/logo_min.png" /></a></h2>
-        <h6>「媽媽，再打我一次」的圖像構建器 <?=$VarID?> </h6>
+        <h6>「漫畫和表情圖案」的構建器 <?=$VarID?> </h6>
       </div>
     </div>

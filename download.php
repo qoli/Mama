@@ -1,5 +1,5 @@
 <?php
-header('Content-Disposition: attachment; filename="mamailoveu.jpg"');
+header('Content-Disposition: attachment; filename="mamailoveu.png"');
 session_start();
 
 set_time_limit(60);
