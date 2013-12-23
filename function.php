@@ -181,7 +181,12 @@ function isZHCN($str) {
 }
 
 function OutputPNG($image, $posY, $rgb, $text) {
-    $font_path = dirname(__FILE__) . '/assets/AdobeHeitiStd-Regular.otf';
+    if (isZHCN($text)) {
+        $font_path = dirname(__FILE__) . '/assets/FZZhengHeiS.ttf'; //簡體字庫
+    } else {
+        //$font_path = dirname(__FILE__) . '/assets/LiHeiPro.ttf'; //繁體字庫
+        $font_path = dirname(__FILE__) . '/assets/AdobeHeitiStd-Regular.otf'; //繁體字庫
+    }
     $text = mb_convert_encoding($text, 'HTML-ENTITIES', 'auto');
     //$text = mb_convert_encoding($text, 'UTF-8', 'auto');
     $temp = imagettfbbox(ceil(18), 0, $font_path, $text);
@@ -191,5 +196,14 @@ function OutputPNG($image, $posY, $rgb, $text) {
     //var_dump( $posX);
     imagettftext($image, 18, 0, $posX, $posY, $rgb, $font_path, $text);
     return $image;
+}
+
+function objectToArray($obj){
+    $arr = is_object($obj) ? get_object_vars($obj) : $obj;
+    if(is_array($arr)){
+        return array_map(__FUNCTION__, $arr);
+    }else{
+        return $arr;
+    }
 }
 ?>

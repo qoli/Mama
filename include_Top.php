@@ -3,7 +3,7 @@ session_start();
 header("Content-Type:text/html; charset=utf-8");
 
 $VarID = '1.1.4.1224 Beta';
-$rand = rand ( 1 , 70 );
+$rand = rand ( 1 , 40 );
 ?>
 <!DOCTYPE html>
 <html xmlns:wb=“http://open.weibo.com/wb”>
@@ -11,23 +11,6 @@ $rand = rand ( 1 , 70 );
   <title>Mama，Hit me again!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="favicon.ico" />
-  <!-- Google 分析代碼 -->
-  <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-19058553-1']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
-
-    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-  </script>
-
-  <!-- Social Share  -->  
-  <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -40,7 +23,7 @@ $rand = rand ( 1 , 70 );
       <![endif]-->
 
     </head>
-    <body class="isAni">
+    <body>
 
       <? if ($rand == 1) : ?>
       <div class="alert alert-warning fade in" style="margin-top: 15px;" >

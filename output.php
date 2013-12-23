@@ -2,17 +2,22 @@
 
 include 'function.php';
 
-$BaseDir     = dirname(__FILE__);
-$Folder      = $BaseDir . "/pngs";
-$o           = get_files($Folder);
-$i           = array();
-$type_org[0] = 1; //類型
-$type_org[1] = 0; //posx
-$type_org[2] = 390; //posy
-$type_org[3] = -10;
-$type_org[4] = -10;
-$baseid      = NULL;
-$type        = $type_org;
+$BaseDir      = dirname(__FILE__);
+$Folder       = $BaseDir . "/pngs";
+$o            = get_files($Folder);
+$i            = array();
+$type_org[0]  = 1; //類型
+$type_org[1]  = 0; //posx
+$type_org[2]  = 390; //posy
+$type_org[3]  = -10;
+$type_org[4]  = -10;
+$baseid       = NULL;
+$type         = $type_org;
+$str_xmlStart = '<?xml version="1.0" encoding="UTF-8"?> <preloadImages>';
+$str_xmlEnd   = '</preloadImages>';
+$str_xmlContent = "";
+$xmlPath      = $Folder . '/preloader.xml';
+$jsonPath     = $Folder . '/photos.json';
 
 asort($o);
 dump(count($o), '總計');
@@ -20,7 +25,6 @@ dump(count($o), '總計');
 echo "<hr/><h5>特殊設定：</h5>";
 
 foreach ($o as $v) {
-    
     $imageArray = getimagesize($v);
     $wwww_path  = $v;
     $wwww_path  = str_replace($BaseDir . '/', '', $wwww_path);
@@ -58,14 +62,13 @@ foreach ($o as $v) {
         $i[$v[1]][$v[2]][$v[3]]['posy']   = $type[2];
         $i[$v[1]][$v[2]][$v[3]]['posy2']  = $type[3];
         $i[$v[1]][$v[2]][$v[3]]['posy3']  = $type[4];
+        
+        $str_xmlContent = $str_xmlContent . "<image>".$wwww_path."</image>";
     }
 }
 
-dump($i, 'Photo JSON');
+file_put_contents($xmlPath, $str_xmlStart.$str_xmlContent.$str_xmlEnd);
+file_put_contents($jsonPath,json_encode($i));
 
-$json     = json_encode($i);
-$jsonPath = $Folder . '/photos.json';
-$chmod    = chmod($jsonPath, 777);
-$fp       = fopen($jsonPath, 'wb');
-$o        = fwrite($fp, $json);
-fclose($fp);
+echo '<a href="pngs/preloader.xml">preloader.xml</a> ． <a href="pngs/photos.json">photos.json</a>';
+dump($i, 'Photo JSON');

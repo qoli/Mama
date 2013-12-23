@@ -2,51 +2,68 @@ SID = 0;
 pre_photo_h = 0;
 pre_photo_w = 0;
 sh = 0;
+host = "http://tools.llqoli.com/Mama/";
+reSize();
+
+LoadingDone = function() {
+
+	welcomeImage.attr('src', 'assets/welcome.png').load(function() {
+		$(this).removeClass('opa');
+	});
+
+	$('#loadingTxt').fadeOut(2400);
+	previewPop.popover('hide'); //綁定預覽
+	LoadReadly('Readly'); //修改「添加分鏡」的按鈕狀態	
+}
 
 $(document).ready(function() {
 
-	$(window).resize(function() {
-		reSize();
-	})
+	///變量設定
+	previewPop = $('.pop');
+	welcomeImage = $('.welcome');
 
-	w_obj = $('.welcome');
-	w_obj.attr('src', 'assets/welcome.png').load(function() {
-		$(this).removeClass('opa')
-		reSize();
-		$('body').css({
-			'background-color': '#fafafa'
+	LoadReadly('Loading');
+
+	if (isLength('#about_app')) {
+		$('#about_app img').attr('src', 'assets/welcome.png').load(function() {
+			$("#about_app")
+				.animate({
+					textIndent: 0
+				}, {
+					step: function(now, fx) {
+						$(this).css({
+							'opacity': 1
+						});
+					},
+					duration: 1200,
+					complete: function() {
+						$(this)
+							.attr('style', '')
+							.addClass('opa2');
+
+					}
+				}, 'linear');
+
 		})
-	});
+	} //關於頁面的樣式
 
-	LoadReadly('Readly'); //修改「添加分鏡」的按鈕狀態
+	if (isComplete(host + 'pngs/LINE/LINE%20%E5%85%A7%E7%BD%AE%E8%A1%A8%E6%83%85/287@2x.png') === false) {
 
-	$('#about_app img').attr('src', 'assets/welcome.png').load(function() {
-		$("#about_app")
-			.animate({
-				textIndent: 0
-			}, {
-				step: function(now, fx) {
-					$(this).css({
-						'opacity': 1
-					});
-				},
-				duration: 1200,
-				complete: function() {
-					$(this)
-						.attr('style', '')
-						.addClass('opa2');
+		$('#cacheState').text('cache 不存在');
 
-				}
-			}, 'linear');
+		LoadReadly('custom', '建立緩存…');
 
-	}) //歡迎載入樣式完畢
-
-	pop = $('.pop');
-
-	pop.popover('hide');
+		preloader('pngs/preloader.xml', function() {
+			LoadReadly('custom', '緩存建立完畢');
+			LoadingDone();
+		});
+	} else {
+		$('#cacheState').text('快取正常');
+		LoadingDone();
+	}
 
 	$('.closepop').click(function() {
-		pop.popover('hide');
+		previewPop.popover('hide');
 	})
 
 	$('#addPhoto').click(function() {
@@ -63,44 +80,19 @@ $(document).ready(function() {
 		SID = SID + 1;
 		$('<div id="Single_' + SID + '" ></div>').appendTo('#AjaxLoad')
 
-		$('#Single_' + SID).load('Single.html', {}, function(response, status, xhr) {
+		$('#Single_' + SID).load('gethtml.php?SID=' + SID, {
+
+		}, function(response, status, xhr) {
 			t = $('#Single_' + SID);
 			t.slideUp(0);
 			t.slideDown();
 
-			$.get("pngs/photos.json", function(data) {
-				$.each(data, function(idx, item) {
-					$('<li><a href="#' + SID + '_' + idx + '" data-toggle="tab">' + idx + '</a></li>').appendTo('#Single_' + SID + ' .nav-tabs');
-
-					html = '';
-					$.each(item, function(html_idx, html_item) {
-						html = html + '<h5><b>' + html_idx + '</b></h5>';
-						this_html = '';
-						$.each(html_item, function(item_idx, item_list) {
-							if (item_list.width >= 500) {
-								w_500 = 500;
-								h_500 = item_list.height * (500 / item_list.width)
-							} else {
-								w_500 = item_list.width
-								h_500 = item_list.height
-							}
-							this_html = this_html + '<img class="isAni ClickPhoto" src="' + item_list.path + '" data-trigger="hover" data-placement="bottom" title="' + item_list.text + '" data-title="' + item_list.text + '" data-content="<img width=\'' + w_500 + '\' height=\'' + h_500 + '\' src=\'' + item_list.path + '\' />" data-html="true" width="' + 48 + '" height="' + item_list.height * (48 / item_list.width) + '" data_type="' + item_list.type + '" data_posx="' + item_list.posx + '"  data_posy="' + item_list.posy + '" data_posy2="' + item_list.posy2 + '" data_posy3="' + item_list.posy3 + '" />';
-						});
-						html = html + this_html;
-					});
-
-					$('<div class="tab-pane fade in" id="' + SID + '_' + idx + '">' + html + '</div>').appendTo('#Single_' + SID + ' .tab-content');
-
-				})
-				$('<li class="pull-right"><a href="#' + SID + '_empty" data-toggle="tab"><span class="glyphicon glyphicon-chevron-up"></span> 收起</a></li>').appendTo('#Single_' + SID + ' .nav-tabs');
-				$('<div class="tab-pane fade in" id="' + SID + '_empty">' + '<h5><b>請點擊上方展開</b></h5><hr/>' + '</div>').appendTo('#Single_' + SID + ' .tab-content');
-				$('#Single_' + SID + ' .nav-tabs a:first').tab('show'); //激活第一個 TAB
-				$('#Single_' + SID + ' .tab-content img').popover('hide'); //激活 popover;
-				$('#Single_' + SID + ' .DelSingle').attr('dataSID', SID); //綁定刪除分鏡按鈕
-				ClickPhoto(SID); //變更圖片的操作綁定
-			}); //解釋 JSON
-
+			$('#Single_' + SID + ' .nav-tabs a:first').tab('show'); //激活第一個 TAB
+			$('#Single_' + SID + ' .tab-content img').popover('hide'); //激活 popover;
+			$('#Single_' + SID + ' .DelSingle').attr('dataSID', SID); //綁定刪除分鏡按鈕
 			LoadReadly('reset');
+			ClickPhoto(SID); //變更圖片的操作綁定
+
 			if (status == "error") {
 				$('#addPhoto .text').text('再次嘗試');
 			}
@@ -115,7 +107,7 @@ $(document).ready(function() {
 	$('#PreviewButton').click(function() {
 
 		t = $(this);
-		pop.popover('hide');
+		previewPop.popover('hide');
 		t.addClass('disabled');
 		//t.html('<span class="glyphicon glyphicon-chevron-right"></span> 處理中…');
 		t.button('loading');
@@ -135,10 +127,10 @@ $(document).ready(function() {
 					.removeClass('btn-primary')
 					.addClass('btn-success')
 					.html('<span class="glyphicon glyphicon-ok"></span> 重新生成');
-				pop.popover('show');
+				previewPop.popover('show');
 
 				$('#close_preview').click(function() {
-					pop.popover('hide');
+					previewPop.popover('hide');
 				})
 
 			});
@@ -148,8 +140,18 @@ $(document).ready(function() {
 	$('#OutputJPG').click(function() {
 		document.location.href = "download.php";
 	});
+
 });
 
+var resizeTimer = null;
+$(window).on('resize', function() {
+	if (resizeTimer) {
+		clearTimeout(resizeTimer)
+	}
+	resizeTimer = setTimeout(function() {
+		reSize();
+	}, 400);
+});
 
 /**
  * 一堆函數
@@ -185,7 +187,7 @@ function ClickPhoto(SID) {
 
 		ShowTheinput(type);
 
-		UpdatePhoto("", "", "", SID, src,posy,posy2,posy3);
+		UpdatePhoto("", "", "", SID, src, posy, posy2, posy3);
 
 	})
 
@@ -265,7 +267,7 @@ function UpdateData(obj, dataName, dataValue) {
 
 	v = dataValue;
 
-	console.log(v);
+	//console.log(v);
 	return v;
 }
 
@@ -326,11 +328,15 @@ function reSize() {
 	});
 }
 
-function LoadReadly(state) {
+function LoadReadly(state, text) {
 
 	addPhoto = $('#addPhoto');
 	addPhoto_text = $('#addPhoto .text');
-	$('.tab-content a').tooltip('hide'); //激活 tooltip;
+
+	if (state == "custom") {
+		addPhoto.addClass('disabled');
+		addPhoto_text.text(text);
+	}
 
 	if (state == 'Loading') {
 		addPhoto.button('loading');
@@ -341,8 +347,96 @@ function LoadReadly(state) {
 	}
 
 	if (state == 'Readly') {
+		addPhoto.button('reset');
 		addPhoto.removeClass('disabled');
 		addPhoto_text.text('添加鏡頭');
 	}
 
 }
+
+function isLength(obj) {
+	if ($(obj).length > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isComplete(url) {
+	var img = new Image();
+	img.src = url;
+
+	if (img.complete || img.width) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isUndefined(cb) {
+	if (typeof(cb) == 'undefined') {
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function preloader(file, callback) {
+	// XMLHttpRequestオブジェクト
+	var xmlhttp = null;
+
+	// ロード監視フラグ
+	var loaded = false;
+
+	// プリロード画像ファイル名の格納用配列
+	var preloadImages = new Array();
+
+
+	if (xmlhttp != null && xmlhttp.readyState != 0 && xmlhttp.readyState != 4) {
+		xmlhttp.abort();
+	}
+
+
+	/* XMLHttpRequestオブジェクトの作成 */
+	try {
+		// Internet Explorer 7, Firefox, Mozilla, Nestcape, Safari
+		xmlhttp = new XMLHttpRequest();
+	} catch (e) {
+		try {
+			// Internet Explorer
+			xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+		} catch (e) {
+			// Ajax非対応ブラウザ
+			xmlhttp = null;
+			return false;
+		}
+	}
+
+
+	/* レスポンスデータ処理 */
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4) {
+			if (xmlhttp.status == 200) {
+				// 画像ロード処理
+				var imgcol = xmlhttp.responseXML.getElementsByTagName('image');
+				for (var i = 0; i < imgcol.length; i++) {
+					preloadImages[i] = new Image();
+					preloadImages[i].src = imgcol[i].firstChild.nodeValue;
+					$('#Num').text(i + 1);
+					$('#All').text(imgcol.length);
+				}
+				loaded = true;
+				callback();
+			} else {
+				alert('緩存建立工具錯誤 :' + xmlhttp.statusText);
+			}
+		}
+	};
+
+
+	/* HTTPリクエスト */
+	xmlhttp.open('GET', file, true);
+	xmlhttp.send(null);
+}
+
+function DefCallback() {};
