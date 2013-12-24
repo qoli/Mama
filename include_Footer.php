@@ -13,9 +13,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <script src="js/jquery-2.0.3.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.lazyload.min.js"></script>
 <script src="js/app.js"></script>
 <div class="footer opa isAni">
-      </p> 設計和開發由 Qoli Wong 完成。．<a href="http://www.llqoli.com">www.llqoli.com</a> ．<a href="http://weibo.com/qoli">weibo.com/qoli</a> ．「媽媽，請再打我一次」的圖像來源于微博，原始來源未知。 · <?=$rand?> ． <span id="cacheState" ></span> </p>
+      </p> 設計和開發由 Qoli Wong 完成。．<a href="http://www.llqoli.com">www.llqoli.com</a> ．<a href="http://weibo.com/qoli">weibo.com/qoli</a> ．「媽媽，請再打我一次」的圖像來源于微博，原始來源未知。 · <?php echo $rand ?> ． <span id="cacheState" ></span> </p>
       <!-- <iframe width="500" height="56" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="share.html"></iframe> -->
 </div>
 </body>

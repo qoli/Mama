@@ -6,11 +6,6 @@ host = "http://tools.llqoli.com/Mama/";
 reSize();
 
 LoadingDone = function() {
-
-	welcomeImage.attr('src', 'assets/welcome.png').load(function() {
-		$(this).removeClass('opa');
-	});
-
 	$('#loadingTxt').fadeOut(2400);
 	previewPop.popover('hide'); //綁定預覽
 	LoadReadly('Readly'); //修改「添加分鏡」的按鈕狀態	
@@ -23,6 +18,15 @@ $(document).ready(function() {
 	welcomeImage = $('.welcome');
 
 	LoadReadly('Loading');
+
+	welcomeImage.attr('src', 'assets/welcome.png').load(function() {
+		$(this).removeClass('opa');
+
+		LoadingDone();
+
+		$('#cacheState').text('...');
+
+	});
 
 	if (isLength('#about_app')) {
 		$('#about_app img').attr('src', 'assets/welcome.png').load(function() {
@@ -47,21 +51,6 @@ $(document).ready(function() {
 		})
 	} //關於頁面的樣式
 
-	if (isComplete(host + 'pngs/LINE/LINE%20%E5%85%A7%E7%BD%AE%E8%A1%A8%E6%83%85/287@2x.png') === false) {
-
-		$('#cacheState').text('cache 不存在');
-
-		LoadReadly('custom', '建立緩存…');
-
-		preloader('pngs/preloader.xml', function() {
-			LoadReadly('custom', '緩存建立完畢');
-			LoadingDone();
-		});
-	} else {
-		$('#cacheState').text('快取正常');
-		LoadingDone();
-	}
-
 	$('.closepop').click(function() {
 		previewPop.popover('hide');
 	})
@@ -80,24 +69,36 @@ $(document).ready(function() {
 		SID = SID + 1;
 		$('<div id="Single_' + SID + '" ></div>').appendTo('#AjaxLoad')
 
-		$('#Single_' + SID).load('gethtml.php?SID=' + SID, {
 
+		$.get('gethtml.php', {
+			'SID': SID
 		}, function(response, status, xhr) {
+
+			$('#Single_' + SID).html(response);
+
 			t = $('#Single_' + SID);
 			t.slideUp(0);
 			t.slideDown();
 
-			$('#Single_' + SID + ' .nav-tabs a:first').tab('show'); //激活第一個 TAB
+			$('#Single_' + SID + ' .nav-pills a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+				$('#' + SID + '_' + e.target.text).children('img.lazy').lazyload({
+					effect: "fadeIn"
+				})
+				var timeout = setTimeout(function() {
+					$('#' + SID + '_' + e.target.text).children('img.lazy').trigger("sporty")
+				}, 600);
+			})
+
 			$('#Single_' + SID + ' .tab-content img').popover('hide'); //激活 popover;
 			$('#Single_' + SID + ' .DelSingle').attr('dataSID', SID); //綁定刪除分鏡按鈕
-			LoadReadly('reset');
+			$('#Single_' + SID + ' .nav-pills a:first').tab('show'); //激活第一個 TAB
 			ClickPhoto(SID); //變更圖片的操作綁定
-
+			LoadReadly('reset');
+		}).fail(function() {
 			if (status == "error") {
 				$('#addPhoto .text').text('再次嘗試');
 			}
-
-		}) //Load 完成
+		}) //get 完成
 	})
 
 	$('#preview_photo').load(function() {

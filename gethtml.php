@@ -1,59 +1,68 @@
 <div class="PhotoList" >
     <div class="opa isAni bs-example">
 <?php
-
 include 'function.php';
 
 $SID = $_GET['SID'];
-$BaseDir      = dirname( __FILE__ );
-$Folder       = $BaseDir . "/pngs";
-$jsonPath     = $Folder . '/photos.json';
-$handle = fopen( $jsonPath, "r" );
-$contents = fread( $handle, filesize( $jsonPath ) );
-$json = json_decode( $contents );
-fclose( $handle );
+$BaseDir = dirname(__FILE__);
+$Folder = $BaseDir . "/pngs";
+$jsonPath = $Folder . '/photos.json';
+$handle = fopen($jsonPath, "r");
+$contents = fread($handle, filesize($jsonPath));
+$json = json_decode($contents);
+fclose($handle);
 
-echo '<ul class="nav nav-tabs">';
-foreach ( $json as $idx =>$item ) {
+echo '<ul class="nav nav-pills">';
+
+
+foreach ($json as $idx => $item) {
     echo '<li><a href="#' . $SID . '_' . $idx . '" data-toggle="tab">' . $idx . '</a></li>';
 }
 echo '<li class="pull-right"><a href="#' . $SID . '_empty" data-toggle="tab"><span class="glyphicon glyphicon-chevron-up"></span> 收起</a></li>';
 echo '</ul>';
 
 echo '<div class="tab-content">';
-foreach ( $json as $idx =>$item ) {
 
+$i = 0;
+
+foreach ($json as $idx => $item) {
+    $i++;
     $html = '';
-    foreach ( $item as $html_idx => $html_item ) {
+    
+    
+    foreach ($item as $html_idx => $html_item) {
         $html = $html . '<h5><b>' . $html_idx . '</b></h5>';
         $this_html = '';
-        foreach ( $html_item as $item_idx => $item_list ) {
+        
+        
+        foreach ($html_item as $item_idx => $item_list) {
             $item_list = objectToArray($item_list);
-            if ( $item_list['width'] >= 500 ) {
+            if ($item_list['width'] >= 500) {
                 $w_500 = 500;
-                $h_500 = $item_list['height'] * ( 500 / $item_list['width'] );
+                $h_500 = $item_list['height'] * (500 / $item_list['width']);
             } else {
                 $w_500 = $item_list['width'];
                 $h_500 = $item_list['height'];
             }
-            $this_html = $this_html . 
-            '<img class="isAni ClickPhoto" src="' . $item_list['path'] . '" data-trigger="hover" data-placement="bottom" 
-            title="' . $item_list['text'] . '" data-title="' . $item_list['text'] . '" data-content="<img width=\'' . $w_500 . '\' 
-            height=\'' . $h_500 . '\' src=\'' . $item_list['path'] . '\' />" data-html="true" width="' . 48 . '" 
-            height="' . $item_list['height'] * ( 48 / $item_list['width'] ) . '" data_type="' . $item_list.type . '" 
+            $this_html = $this_html . '<img class="lazy isAni ClickPhoto" src="" data-original="' . $item_list['path'] . '" data-trigger="hover" data-placement="bottom" 
+            title="' . $item_list['text'] . '" data-title="' . $item_list['text'] . '"
+            data-content="<img width=\'' . $w_500 . '\' height=\'' . $h_500 . '\' src=\'' . $item_list['path'] . '\' />" 
+            data-html="true" width="' . 48 . '" height="' . $item_list['height'] * (48 / $item_list['width']) . '" data_type="' . $item_list . type . '" 
             data_posx="' . $item_list['posx'] . '"  data_posy="' . $item_list['posy'] . '" data_posy2="' . $item_list['posy2'] . '" 
             data_posy3="' . $item_list['posy3'] . '" />';
-            
-        }//圖片合併結束
+        } //圖片合併結束
         $html = $html . $this_html;
     }
-
-    echo '<div class="tab-pane fade in" id="' . $SID . '_' . $idx . '">' . $html . '</div>';
+    if ($i == 1) {
+        $in = 'in';
+    } else {
+        $in = "";
+    }
+    echo '<div class="tab-pane fade ' . $in . '" id="' . $SID . '_' . $idx . '">' . $html . '</div>';
 }
 
-echo '<div class="tab-pane fade in" id="' . $SID . '_empty">' . '<h5><b>請點擊上方展開</b></h5><hr/>' . '</div>';
+echo '<div class="tab-pane fade" id="' . $SID . '_empty">' . '<h5><b>請點擊上方展開</b></h5><hr/>' . '</div>';
 echo '</div>';
-
 ?>
   <h5>導演</h5>
   <div class="btn-group">
