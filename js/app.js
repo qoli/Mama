@@ -17,6 +17,12 @@ $(document).ready(function() {
 	previewPop = $('.pop');
 	welcomeImage = $('.welcome');
 
+	if (isComplete(host + 'pngs/LINE/LINE%20%E5%85%A7%E7%BD%AE%E8%A1%A8%E6%83%85/287@2x.png') === false) {
+		$('#cacheState').text('快取不存在');
+	} else {
+		$('#cacheState').text('快取正常');
+	}
+
 	LoadReadly('Loading');
 
 	welcomeImage.attr('src', 'assets/welcome.png').load(function() {
@@ -50,6 +56,14 @@ $(document).ready(function() {
 
 		})
 	} //關於頁面的樣式
+
+	$('#openComments').click(function() {
+		t = $(this);
+		t.button('loading');
+		t.parent().load('comments.php', function() {
+			t.remove();
+		});
+	})
 
 	$('.closepop').click(function() {
 		previewPop.popover('hide');

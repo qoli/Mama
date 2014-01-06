@@ -1,4 +1,4 @@
-1.0.0
+![image](http://tools.llqoli.com/Mama/assets/welcome.png)
 
 # Mama, Hit me again!
 

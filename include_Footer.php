@@ -16,8 +16,14 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <script src="js/jquery.lazyload.min.js"></script>
 <script src="js/app.js"></script>
 <div class="footer opa isAni">
-      </p> 設計和開發由 Qoli Wong 完成。．<a href="http://www.llqoli.com">www.llqoli.com</a> ．<a href="http://weibo.com/qoli">weibo.com/qoli</a> ．「媽媽，請再打我一次」的圖像來源于微博，原始來源未知。 · <?php echo $rand ?> ． <span id="cacheState" ></span> </p>
-      <!-- <iframe width="500" height="56" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="share.html"></iframe> -->
+	</p> 設計和開發由 Qoli Wong 完成。．<a href="http://www.llqoli.com">www.llqoli.com</a> ．<a href="http://weibo.com/qoli">weibo.com/qoli</a> ．「媽媽，請再打我一次」的圖像來源于微博，原始來源未知。 · <?php echo $rand ?> ． <span id="cacheState" ></span> </p>
+	<!-- <iframe width="500" height="56" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="share.html"></iframe> -->
+</div>
+<div class="aboutBox">
+	<div class="row opa isAni">
+		<hr />
+		<button id="openComments" type="button" data-loading-text="載入評論..." class="btn btn-default btn-lg"><span class="glyphicon glyphicon-comment"></span> 打開評論</button>
+	</div>
 </div>
 </body>
 </html>
